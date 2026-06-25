@@ -71,10 +71,17 @@ def search(key):
             print(f"Key {key} is not found in hash table")
             return
 
+# 5. Delete Function
+# Function delete(key):
+# index = hash(key)
+# original_index = index
 def delete(key):
     index = hash(key)
     original_index = index
 
+# WHILE hashTable[index] is NOT NULL:
+# IF hashTable[index] == key:
+# return hashTable[index] in NULL
     while hash_table[index] is not None:
 
         if hash_table[index] == key:
