@@ -1,7 +1,6 @@
 # 1. Initialization
 # Create an array 'hashTable' of a fixed 'SIZE'
 # Fill every slot in 'hashTable' with NULL
-from operator import index
 
 size = 5
 hash_table = [None] * size
