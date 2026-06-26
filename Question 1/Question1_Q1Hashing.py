@@ -23,7 +23,7 @@ def insert(key):
 # If the key is already there, we can update or ignore it
 # IF hashTable[index] == key:
 # return "Key already exists"
-    while hash_table[index] is not None:
+    while hash_table[index] is not None and hash_table[index] != 'DELETED':
         if hash_table[index] == key:
             print("Key already exists")
             return
@@ -84,7 +84,7 @@ def delete(key):
     while hash_table[index] is not None:
 
         if hash_table[index] == key:
-            hash_table[index] = None
+            hash_table[index] = 'DELETED'
             return
 
 # index = (index + 1) MODULO SIZE
