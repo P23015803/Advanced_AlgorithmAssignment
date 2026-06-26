@@ -8,7 +8,7 @@ hash_table = [None] * size
 # 2. Hash Function
 # Function hash(key):
 # return key MODULO SIZE
-def hash(key):
+def hash_function(key):
     return key % size
 
 # 3. Insert Function
@@ -16,7 +16,7 @@ def hash(key):
 # index = hash(key)
 # original_index = index
 def insert(key):
-    index = hash(key)
+    index = hash_function(key)
     original_index = index
 
 # WHILE hashTable[index] is NOT NULL AND hashTable[index] is NOT "DELETED":
@@ -51,7 +51,7 @@ def insert(key):
 # index = hash(key)
 # original_index = index
 def search(key):
-    index = hash(key)
+    index = hash_function(key)
     original_index = index
 
 # WHILE hashTable[index] is NOT NULL:
@@ -75,7 +75,7 @@ def search(key):
 # index = hash(key)
 # original_index = index
 def delete(key):
-    index = hash(key)
+    index = hash_function(key)
     original_index = index
 
 # WHILE hashTable[index] is NOT NULL:
