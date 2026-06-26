@@ -169,6 +169,15 @@ def medicine_list():
     print("==================================================================\n")
 
 def command_menu():
+    # Display Interactive Menu Options
+    # PRINT "\n++++++++ PHARMACY INVENTORY SYSTEM ++++++++"
+    # PRINT "1. Display Inventory Storage"
+    # PRINT "2. Insert New Medicine"
+    # PRINT "3. Search Medicine by ID"
+    # PRINT "4. Delete Medicine by ID"
+    # PRINT "5. Exit System"
+    # PRINT "++++++++++++++++++++++++++++++++++++++++++++"
+
     # Command Pharmacy List System
     print("\n=================== PHARMACY INVENTORY STORAGE ===================")
     print("1. Display Inventory Storage")
@@ -178,9 +187,21 @@ def command_menu():
     print("5. Exit System")
     print("==================================================================\n")
 
+    # INPUT choice
+    # Trim whitespace from choice
     choice = int(input("Select an option (1-5): "))
 
+    #WHILE TRUE DO
     while choice != 5:
+        # Display Interactive Menu Options
+        # PRINT "\n++++++++ PHARMACY INVENTORY SYSTEM ++++++++"
+        # PRINT "1. Display Inventory Storage"
+        # PRINT "2. Insert New Medicine"
+        # PRINT "3. Search Medicine by ID"
+        # PRINT "4. Delete Medicine by ID"
+        # PRINT "5. Exit System"
+        # PRINT "++++++++++++++++++++++++++++++++++++++++++++"
+
         #Command Pharmacy List System
         print("\n=================== PHARMACY INVENTORY STORAGE ===================")
         print("1. Display Inventory Storage")
@@ -190,11 +211,24 @@ def command_menu():
         print("5. Exit System")
         print("==================================================================\n")
 
+        # INPUT choice
+        # Trim whitespace from choice
         choice = int(input("Select an option (1-5): "))
 
+        # Evaluate user choice
+        # IF choice == "1" THEN
+        #     CALL medicine_list()
         if choice == 1:
             medicine_list()
 
+        # ELSE IF choice == "2" THEN
+        # PRINT "\n--- Add New Medicine Details ---"
+        # TRY
+        #     INPUT med_id
+        #     INPUT med_name
+        #     INPUT item_type
+        #     INPUT price
+        #     INPUT med_stock
         elif choice == 2:
             print("\n--- Add New Medicine Detail ---")
             try:
@@ -204,18 +238,37 @@ def command_menu():
                 price = float(input("Enter Unit Price (RM): "))
                 med_stock = int(input("Enter Current Stock: "))
 
+                # Validation check for empty strings
+                # IF med_name is empty OR item_type is empty THEN
+                #     PRINT "Error: Name and Item Type cannot be blank."
+                #     CONTINUE // Skip back to the start of the menu loop
+                # ENDIF
                 # Check for clean inputs
                 if med_name == "" or item_type == "":
                     print("Error: Name and Item Type cannot be blank.")
                     continue
 
+                # Instantiate object and pass it to your Q2 algorithm
+                # new_item = NEW Medicine(med_id, med_name, item_type, price, med_stock)
+                # CALL insert_medicine(new_item)
                 # Add the user entered new item into the pharmacy storage
                 new_item = Medicine(med_id, med_name, item_type, price, med_stock)
                 insert_medicine(new_item)
 
+            # CATCH ValueError
+            #     PRINT "System Input Error: ID, Price, and Stock must be valid numerical values."
+            # ENDTRY
             except ValueError:
                 print("System Input Error: ID, Price, and Stock must be valid numerical values.")
 
+        # ELSE IF choice == "3" THEN
+        # PRINT "\n--- Search Inventory ---"
+        # TRY
+        #     INPUT target_id
+        #     CALL search_medicine(target_id)
+        # CATCH ValueError
+        #     PRINT "System Input Error: ID must be an integer."
+        # ENDTRY
         elif choice == 3:
             print("\n--- Search Inventory ---")
             try:
@@ -224,6 +277,14 @@ def command_menu():
             except ValueError:
                 print("System Input Error: ID must be an integer.")
 
+        # ELSE IF choice == "4" THEN
+        # PRINT "\n--- Remove Product ---"
+        # TRY
+        #     INPUT target_id
+        #     CALL delete_medicine(target_id)
+        # CATCH ValueError
+        #     PRINT "System Input Error: ID must be an integer."
+        # ENDTRY
         elif choice == 4:
             print("\n--- Delete Medicine ---")
             try:
@@ -232,9 +293,20 @@ def command_menu():
             except ValueError:
                 print("System Input Error: ID must be an integer.")
 
+        # ELSE IF choice == "5" THEN
+        # PRINT "\nThank you for using the Local Pharmacy Inventory System. Goodbye!"
+        # BREAK // Force exit the infinite loop
         elif choice == 5:
             print("Exiting System")
             break
+
+    #     ELSE
+    #     PRINT "Selection Error: Invalid choice! Please type a number between 1 and 5."
+    #     ENDIF
+    #
+    # ENDWHILE
+        else:
+            print("Please enter option between (1 to 5)")
 
 def main():
     # Create sample records matching different types
