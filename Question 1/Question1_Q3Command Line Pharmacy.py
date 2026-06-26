@@ -12,6 +12,11 @@
 #         self.item_type = type
 #         self.price = price
 #         self.stock = stock
+#
+#     //GETTER
+#
+#     //SETTER
+
 class Medicine:
     def __init__(self, med_id, med_name, item_type, price, med_stock):
         self.med_id = med_id
