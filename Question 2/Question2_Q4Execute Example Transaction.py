@@ -1,3 +1,4 @@
+import time # For Q4
 # CLASS Transaction:
 #     PROPERTIES:
 #         transaction_id    // Integer
@@ -75,6 +76,9 @@ def merge_sort(array_list):
     left_array = array_list[:mid]
     right_array = array_list[mid:]
 
+    # Optional: Showing the recursive separation step
+    print(f"[Recursive Split] Left IDs: {[t.get_id() for t in left_array]} | Right IDs: {[t.get_id() for t in right_array]}")
+
     # Step 2: CONQUER
     # Recursively solve the sub-problems by sorting both halves.
     # sorted_left = merge_sort(left_array)
@@ -140,7 +144,7 @@ def binary_search(array_list, low, high, target):
     # Check is the target value inside the list or not
     if low > high:
         print("The target wasn't inside the list")
-        return -1
+        return -1 # Makes it failed safely
 
     # Step 1: DIVIDE
     # Split the array into two halves around the midpoint.
@@ -174,7 +178,7 @@ def binary_search(array_list, low, high, target):
     # ENDFUNCTION
     else:
         print("Some error occurred when search")
-        return -1
+        return -1 # Makes it failed safely
 
 
 def main():
@@ -197,29 +201,60 @@ def main():
         Transaction(108, "Sybil", "Smart Watch", 210.00, "2026-02-10")
     ]
 
+    # Q4 Part A: Merge Sort Execution
+    print("=== MERGE SORT OPERATIONS ===")
     # Print Original Array
-    print("Original Unsorted Array: ")
-    print([transaction_index.get_id() for transaction_index in unsorted_array])
+    print("Original Unsorted Array (IDs):")
+    print([t.get_id() for t in unsorted_array])
+    print("\nTracing Recursive Calls:")
 
     # Sort the array
+    start_sort = time.perf_counter()
     sorted_array = merge_sort(unsorted_array)
+    end_sort = time.perf_counter()
+
+    merge_sort_time = end_sort - start_sort
 
     # Show the sorted array
-    print("\nSorted Array: ")
-    print([transaction_index.get_id() for transaction_index in sorted_array])
+    print("\nSorted Array (IDs):")
+    print([t.get_id() for t in sorted_array])
+    print(f"--> Merge Sort Execution Time: {merge_sort_time:.8f} seconds\n")
 
-    # Use binary search to search for target
-    target = 104
-    print(f"\nTarget Value: {target}")
-    search_index = binary_search(sorted_array, 0, len(sorted_array) - 1, target)
+    # Q4 Part B: Binary Search Cases
+    print("=== BINARY SEARCH OPERATIONS ===")
+    # Case 1: Searching for an existing transaction
+    target_exist = 104
+    print(f"\n[Case 1] Searching for EXISTING ID: {target_exist}")
 
-    if search_index != -1:
-        search_transaction = sorted_array[search_index]
-        print(f"\nTransaction Record Found! Detail:")
-        print(f"ID: {search_transaction.get_id()} | Customer: {search_transaction.get_customer()} | Product: {search_transaction.get_product()} | Price: ${search_transaction.get_amount()} | Date: {search_transaction.get_date()}")
+    start_exist_search = time.perf_counter()
+    index_exist = binary_search(sorted_array, 0, len(sorted_array) - 1, target_exist)
+    end_exist_search = time.perf_counter()
 
+    search_time_exist = end_exist_search - start_exist_search
+
+    if index_exist != -1:
+        match = sorted_array[index_exist]
+        print(f"Success: Transaction found at sorted index {index_exist}!")
+        print(f"Details: {match.get_customer()} bought a {match.get_product()} (${match.get_amount()})")
     else:
-        print("Target Value Not Found")
+        print("Alert: Transaction ID not found.")
+    print(f"--> Execution Time: {search_time_exist:.8f} seconds")
+
+    # Case 2: Searching for a non-existing transaction
+    target_missing = 999
+    print(f"\n[Case 2] Searching for NON-EXISTING ID: {target_missing}")
+
+    start_non_exist_search = time.perf_counter()
+    index_missing = binary_search(sorted_array, 0, len(sorted_array) - 1, target_missing)
+    end_non_exist_search = time.perf_counter()
+
+    search_time_missing = end_non_exist_search - start_non_exist_search
+
+    if index_missing != -1:
+        print(f"Success: Transaction found at sorted index {index_missing}!")
+    else:
+        print(f"Alert: The target transaction ID {target_missing} wasn't inside the list.")
+    print(f"--> Execution Time: {search_time_missing:.8f} seconds\n")
 
 if __name__ == "__main__":
     main()
