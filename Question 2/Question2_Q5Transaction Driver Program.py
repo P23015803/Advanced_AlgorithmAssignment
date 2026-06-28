@@ -375,7 +375,7 @@ def command_menu():
 
     is_sorted = "None"  # Track state flag safely for Binary Search
 
-    # Local performance history database matching your design requirements
+    # Local performance history database
     performance_metrics = {
         "Merge Sort (by ID)": {"size": 0, "time": "No Run Record Yet", "theory": "O(N log N)"},
         "Merge Sort (by Amount)": {"size": 0, "time": "No Run Record Yet", "theory": "O(N log N)"},
