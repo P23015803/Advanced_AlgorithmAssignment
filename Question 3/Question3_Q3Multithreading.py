@@ -20,6 +20,9 @@ def calculate_factorial(n):
 #     SET start_time TO GET_CURRENT_TIME_IN_NANOSECONDS()
 def multithreading_round():
 
+    # CREATE THREAD thread1 WITH TARGET calculate_factorial AND ARGUMENTS [50]
+    # CREATE THREAD thread2 WITH TARGET calculate_factorial AND ARGUMENTS [100]
+    # CREATE THREAD thread3 WITH TARGET calculate_factorial AND ARGUMENTS [200]
     # 1. Initialize 3 separate threads, 1 for each factorial operation
     thread1 = threading.Thread(target=calculate_factorial, args=(50,))
     thread2 = threading.Thread(target=calculate_factorial, args=(100,))
@@ -29,11 +32,18 @@ def multithreading_round():
     # Capture the starting system time in nanoseconds
     start_time = perf_counter_ns()
 
+
+    # START thread1
+    # START thread2
+    # START thread3
     # Start execution across all threads
     thread1.start()
     thread2.start()
     thread3.start()
 
+    # WAIT FOR thread1 TO FINISH
+    # WAIT FOR thread2 TO FINISH
+    # WAIT FOR thread3 TO FINISH
     # 3. Use join() to force the main script to wait until all threads finish
     thread1.join()
     thread2.join()
